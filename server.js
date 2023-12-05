@@ -10,7 +10,8 @@ const db = require('./utils/db');
 const customError = require('./utils/customError');
 
 const optionRouter = require('./routers/option.r');
-
+const conflictRouter = require('./routers/conflict.r');
+const resolveConflictRouter = require('./routers/resolveConflict.r');
 
 //SETTING UP SERVER
 app.engine('.hbs', engine({ extname: '.hbs' }));
@@ -36,6 +37,9 @@ app.use(
 
 // ROUTERS
 app.use("", optionRouter);
+app.use("/login_lockConflict", conflictRouter);
+app.use("/login_resolve_lockConflict", resolveConflictRouter);
+
 
 
 
@@ -51,7 +55,7 @@ app.use((err, req, res, next) => {
 
 
 // START SERVER
-db.initDatabase().then(() => {
+db.connectDatabase().then(() => {
     app.listen(port, () => console.log(`Server is running at http://${host}:${port}`));
 }).catch(err => {
     console.error(`Failed to initialize database: ${err}`);
