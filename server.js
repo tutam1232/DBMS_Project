@@ -4,14 +4,15 @@ const { engine } = require('express-handlebars');
 const session = require("express-session");
 const app = express();
 
+
 // LOCAL MODULES
 const db = require('./utils/db');
 const customError = require('./utils/customError');
 
 const optionRouter = require('./routers/option.r');
 
-//SETTING UP SERVER
 
+//SETTING UP SERVER
 app.engine('.hbs', engine({ extname: '.hbs' }));
 app.set('view engine', '.hbs');
 app.set('views', './views');
@@ -30,6 +31,7 @@ app.use(
         cookie: { secure: false },
     }),
 );
+
 
 
 // ROUTERS
