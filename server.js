@@ -1,6 +1,7 @@
 // NPM MODULES
 const express = require("express");
 const { engine } = require('express-handlebars');
+const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const app = express();
 
@@ -12,6 +13,8 @@ const customError = require('./utils/customError');
 const optionRouter = require('./routers/option.r');
 const conflictRouter = require('./routers/conflict.r');
 const resolveConflictRouter = require('./routers/resolveConflict.r');
+const staffRouter = require('./routers/staff.r');
+const doctorRouter = require('./routers/doctor.r');
 
 //SETTING UP SERVER
 app.engine('.hbs', engine({ extname: '.hbs' }));
@@ -22,8 +25,9 @@ const port = process.env.PORT | 3000;
 const host = process.env.HOST || 'localhost';
 const secret = "mysecretkey";
 
-//app.use(express.urlencoded({ extended: true }))
-//app.use(express.json());
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json());
+app.use(cookieParser(secret));
 app.use(
     session({
         resave: true,
@@ -40,6 +44,8 @@ app.use("", optionRouter);
 app.use("/login_lockConflict", conflictRouter);
 app.use("/login_resolve_lockConflict", resolveConflictRouter);
 
+app.use("/staff", staffRouter);
+app.use("/doctor", doctorRouter);
 
 
 // ERROR HANDLING

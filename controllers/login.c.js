@@ -3,6 +3,10 @@ const db = require('../utils/db');
 module.exports = {
     renderLoginChoice: async function renderLogin(req, res, next) {
         try {
+            if(req.session.userType)
+                res.redirect('/' + req.session.userType);
+
+
             res.render('loginChoice', { title: "Loginc Choice" });
         } catch (error) {
             next(error);
@@ -10,6 +14,10 @@ module.exports = {
     },
     renderLogin: async function renderLogin(req, res, next) {
         try {
+            if(req.session.userType)
+                res.redirect('/' + req.session.userType);
+
+
             const URL = req.originalUrl;
             const secondPart = URL.split('/')[2];
             console.log(secondPart)
@@ -37,8 +45,8 @@ module.exports = {
                 }
             }
 
-            await db.connectDatabase(config);
-
+           const connection = await db.connectDatabase(config);
+            req.session.connection = connection;    
 
             // await req.session.regenerate(function(err) {
             //     if (err) {
@@ -60,8 +68,7 @@ module.exports = {
             req.session.userType = secondPart;
             console.log('dang nhap dc roi!!!', req.session.userType);//  
              
-            console.log(req.session.user, req.session.userType)
-            res.redirect('/');
+            res.redirect('/' + req.session.userType);
             //TODO: redirect to home page of staff
         } catch (error) {
             //console.log(error);
