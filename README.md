@@ -7,3 +7,9 @@
 - Để chạy: chuột phải folder gốc -> open in intergrated terminal -> gõ npm start -> http://localhost:3000/ trên chrome
 
 - Ý tưởng routing mình trình bày sau nha
+
+- Note: sesssion chứa:
+    + resolve: cho biết đang ở demo resolve hay conflict
+    + user: username
+    + userType: loại user (KH, NS, QTV,,...)
+    + connection: lưu connection cho từng user login

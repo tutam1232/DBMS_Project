@@ -1,0 +1,40 @@
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+    data-bs-whatever="@mdo">Thêm lịch hẹn</button>
+
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm lịch hẹn</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form method="post" action="/staff/addAppointment">
+                <div class="mb-3">
+                    <label for="maphieu" class="col-form-label">Mã phiếu:</label>
+                    <input type="text" class="form-control" id="maphieu">
+                </div>
+                <div class="mb-3">
+                    <label for="manhashi" class="col-form-label">Mã nha sĩ khám:</label>
+                    <input type="text" class="form-control" id="manhashi"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="ngaykham" class="col-form-label">Ngày khám:</label>
+                    <input type="date" class="form-control" id="ngaykham"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="thutuca" class="col-form-label">Thứ tự ca:</label>
+                    <input type="text" class="form-control" id="thutuca"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="sdtkhachhang" class="col-form-label">SDT khách hàng:</label>
+                    <input type="text" class="form-control" id="sdtkhachhang"></textarea>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Send message</button>
+        </div>
+    </div>
+</div>
+</div>

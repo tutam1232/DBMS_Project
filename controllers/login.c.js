@@ -7,7 +7,7 @@ module.exports = {
                 res.redirect('/' + req.session.userType);
 
 
-            res.render('loginChoice', { title: "Loginc Choice" });
+            res.render('loginChoice', { title: "Login Choice" });
         } catch (error) {
             next(error);
         }
@@ -20,10 +20,14 @@ module.exports = {
 
             const URL = req.originalUrl;
             const secondPart = URL.split('/')[2];
-            console.log(secondPart)
+            const firstPart = URL.split('/')[1];
             let customer = false;
             if (secondPart === 'customer')
                 customer = true;
+            if(firstPart === 'login_lockConflict')
+                req.session.resolve = false;
+            if(firstPart === 'login_resolve_lockConflict')
+                req.session.resolve = true;
 
             res.render('login', { title: "Login", customer: customer, URL: URL });
         } catch (error) {
