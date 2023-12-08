@@ -1,20 +1,57 @@
-<h2 class="d-flex justify-content-center">Tôi là...</h2>
-
-<div class="d-flex justify-content-center align-items-center">
-    <a href="#" onclick="window.location.href = window.location.href + '/admin'; return false;" class="btn btn-secondary fw-bold fs-5">Quản trị viên</a>
-    <span>&nbsp;</span>
-    <span>&nbsp;</span>
-    <span>&nbsp;</span>
-    <span>&nbsp;</span>
-    <a href="#" onclick="window.location.href = window.location.href + '/staff'; return false;" class="btn btn-primary fw-bold fs-5">Nhân viên</a>
-    <span>&nbsp;</span>
-    <span>&nbsp;</span>
-    <span>&nbsp;</span>
-    <span>&nbsp;</span>
-    <a href="#" onclick="window.location.href = window.location.href + '/doctor'; return false;" class="btn btn-success fw-bold fs-5">Nha sĩ</a>
-    <span>&nbsp;</span>
-    <span>&nbsp;</span>
-    <span>&nbsp;</span>
-    <span>&nbsp;</span>
-    <a href="#" onclick="window.location.href = window.location.href + '/customer'; return false;" class="btn btn-info fw-bold fs-5">Khách hàng</a>
+<div class="justify-content-center d-flex">
+  <form class="border border-secondary-subtle rounded" style="padding: 10px;" method="post" action="{{URL}}">
+    <h1>Login</h1>
+    <br>
+    <!-- Username input -->
+    <div class="form-outline mb-4">
+      <input type="username" id="form2Example1" class="form-control {{validate}}" name="username" />
+      <label class="form-label" for="form2Example1">Username</label>
+    </div>
+  
+    <!-- Password input -->
+    <div class="form-outline mb-4">
+      <input type="password" id="form2Example2" class="form-control {{validate}}" name="password" />
+      <label class="form-label" for="form2Example2">Password</label>
+  
+      <!-- Invalid feedback -->
+      <div class="invalid-feedback">
+        {{error}}
+      </div>
+    </div>
+  
+    <!-- 2 column grid layout for inline styling -->
+    <div class="row mb-4">
+      <div class="col d-flex justify-content-center">
+        <!-- Checkbox -->
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="form2Example31" name="rememberme"/>
+          <label class="form-check-label" for="form2Example31"> Remember me </label>
+        </div>
+      </div>
+  
+    </div>
+  
+    <!-- Submit button -->
+    <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
+  
+    <!-- Register buttons -->
+    {{#if customer}}
+    <div class="text-center">
+        <p>Not a member? <href="#" onclick="window.location.href = window.location.href + '/register'; return false;">Register</a></p>
+    </div>
+    {{/if}}
+  </form>
+  
+  <div class="toast-container {{#if showToast}} {{else}} d-none{{/if}}" style="position: absolute; top: 10px; right: 10px;">
+    <div class="toast fade show">
+      <div class="toast-header">
+        <strong class="me-auto"><i class="bi-globe"></i> Register successful!</strong>
+        <small>just now</small>
+        <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+      </div>
+      <div class="toast-body">
+        Register successfully, you can login with your account now!
+      </div>
+    </div>
+  </div>
 </div>

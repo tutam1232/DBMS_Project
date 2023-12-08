@@ -42,7 +42,6 @@ app.use("/login_resolve_lockConflict", resolveConflictRouter);
 
 
 
-
 // ERROR HANDLING
 app.use((err, req, res, next) => {
     let statusCode = 500;
@@ -55,8 +54,10 @@ app.use((err, req, res, next) => {
 
 
 // START SERVER
-db.connectDatabase().then(() => {
-    app.listen(port, () => console.log(`Server is running at http://${host}:${port}`));
-}).catch(err => {
-    console.error(`Failed to initialize database: ${err}`);
-});
+app.listen(port, () => console.log(`Server is running at http://${host}:${port}`));
+// db.connectDatabase().then(() => {
+//     app.listen(port, () => console.log(`Server is running at http://${host}:${port}`));
+// }).catch(err => {
+//     console.error(`Failed to initialize database: ${err}`);
+// });
+
