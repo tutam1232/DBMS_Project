@@ -9,7 +9,7 @@
 - Ý tưởng routing mình trình bày sau nha
 
 - Note: sesssion chứa:
-    + resolve: cho biết đang ở demo resolve hay conflict
+    + resolve: cho biết đang ở demo resolve hay conflict (true: resolve, false: conflict)
     + user: username
     + userType: loại user (KH, NS, QTV,,...)
     + config: lưu config obj cho từng user để connect db
