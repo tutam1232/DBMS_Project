@@ -49,8 +49,8 @@ module.exports = {
                 }
             }
 
-           const connection = await db.connectDatabase(config);
-            req.session.connection = connection;    
+           const returnConfig = await db.connectDatabase(config);
+            req.session.config = returnConfig;    
 
             // await req.session.regenerate(function(err) {
             //     if (err) {
@@ -71,7 +71,6 @@ module.exports = {
             const secondPart = req.originalUrl.split('/')[2];
             req.session.userType = secondPart;
             console.log('dang nhap dc roi!!!', req.session.userType);//  
-             
             res.redirect('/' + req.session.userType);
             //TODO: redirect to home page of staff
         } catch (error) {

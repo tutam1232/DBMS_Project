@@ -12,4 +12,4 @@
     + resolve: cho biết đang ở demo resolve hay conflict
     + user: username
     + userType: loại user (KH, NS, QTV,,...)
-    + connection: lưu connection cho từng user login
+    + config: lưu config obj cho từng user để connect db
