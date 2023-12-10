@@ -1,5 +1,4 @@
 require('dotenv').config();
-const e = require('express');
 const db = require('mssql');
 
 module.exports = {

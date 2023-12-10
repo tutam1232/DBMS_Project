@@ -1,4 +1,5 @@
-const db = require('../utils/db');
+const loginM = require("../models/login.m");
+const path=require('path');
 
 module.exports = {
     renderLoginChoice: async function renderLogin(req, res, next) {
@@ -27,7 +28,7 @@ module.exports = {
             if(firstPart === 'login_lockConflict')
                 req.session.resolve = false;
             if(firstPart === 'login_resolve_lockConflict')
-                req.session.resolve = true;
+                req.session.resolve = true;            
 
             res.render('login', { title: "Login", customer: customer, URL: URL });
         } catch (error) {
@@ -36,46 +37,32 @@ module.exports = {
     },
     postLogin: async function postLogin(req, res, next) {
         try {
-            const { username, password } = req.body;
-            var config = {
-                server: process.env.DB_HOST,
-                database: process.env.DB_NAME,
-                user: username,
-                password: password,
-                port: parseInt(process.env.DB_PORT),
-                options: {
-                    //trustedConnection: false,
-                    trustServerCertificate: true
-                }
+            await loginM.postLogin(req, res, next);
+
+            //kiem tra role
+            const checkUserType = await loginM.checkUserType(req, res, next);
+            console.log(checkUserType)
+            if(checkUserType == 0){
+                await loginM.logout(req, res, next);
+                res.render('login', { title: "login", validate: "is-invalid", error: "Invalid User", });
             }
 
-           const returnConfig = await db.connectDatabase(config);
-            req.session.config = returnConfig;    
 
-            // await req.session.regenerate(function(err) {
-            //     if (err) {
-            //         console.log(err);
-            //     } else {
-            //         // Store the user's information in the session
-            //         req.session.user = username;
+            res.redirect('/' + req.session.userType);           
+            
 
-            //         const secondPart = req.originalUrl.split('/')[2];
-            //         req.session.userType = secondPart;
-            //         console.log('dang nhap dc roi!!!', req.session.userType);
-
-            //         //res.redirect('/');
-            //     }
-            // });
-            req.session.user = username;
-
-            const secondPart = req.originalUrl.split('/')[2];
-            req.session.userType = secondPart;
-            console.log('dang nhap dc roi!!!', req.session.userType);//  
-            res.redirect('/' + req.session.userType);
-            //TODO: redirect to home page of staff
         } catch (error) {
             //console.log(error);
             res.render('login', { title: "login", validate: "is-invalid", error: "Invalid username or password", });
+        }
+    },
+    logout: async function logout(req, res, next) {
+        try {
+            await loginM.logout(req, res, next);
+            
+            res.redirect('/');
+        } catch (error) {
+            next(error);
         }
     }
 };

@@ -7,6 +7,7 @@
     "express-session": "^1.17.3",
     "mssql": "^10.0.1",
     "nodemon": "^3.0.2",
+    "path": "^0.12.7",
     "pg-promise": "^11.5.4"
   },
   "scripts": {
