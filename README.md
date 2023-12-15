@@ -13,3 +13,4 @@
     + user: username
     + userType: loại user (KH, NS, QTV,,...)
     + config: lưu config obj cho từng user để connect db
+- Nếu server của mn là tên máy (vd như tam/tam123) mà lưu trong DB_HOST ở file .env chạy ko dc (lỗi could not sequence) thì đổi DB_HOST thành localhost/tam123 nha
