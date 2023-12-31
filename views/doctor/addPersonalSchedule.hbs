@@ -1,0 +1,55 @@
+<div>
+    <div>
+        <div>
+            <h1>Thêm lịch cá nhân</h1>
+        </div>
+        <div>
+            <form id="myForm" method="post" action="/doctor/addPersonalSchedule">
+                <div class="mb-3">
+                    <label for="ngaykham" class="col-form-label">Ngày khám:</label>
+                    <input type="date" name="ngaykham" class="form-control" id="ngaykham">
+                </div>
+                <div class="mb-3">
+                    <label for="thutuca" class="col-form-label">Thứ tự ca:</label>
+                    <input type="text" name="thutuca" class="form-control" id="thutuca">
+                </div>
+            </form>
+        </div>
+        <div>
+            <button id="myButton"  type="submit" class="btn btn-primary">Thêm lịch cá nhân</button>
+        </div>
+    </div>
+</div>
+<h2>Lịch cá nhân</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Nha sĩ khám</th>
+      <th>Ngày khám</th>
+      <th>Thứ tự ca</th>
+      <th>Trạng thái</th>
+      <th>Hành động</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each LichCaNhan}}
+    <tr>
+    <td><input type="text" value="{{this.MaNhaSi}}"></td>
+    <td><input type="text" value="{{this.Ngay}}"></td>
+    <td><input type="text" value="{{this.ThuTuCa}}"></td>
+    <td><input type="text" value="{{this.TrangThai}}"></td>
+    <td>
+        <button type="button" class="btn btn-primary">Sửa</button>
+        <button type="button" class="btn btn-danger">Xóa</button>
+    </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+
+<script>
+  $('#myButton').click(function() {
+    $('#myForm').submit();
+  });
+</script>

@@ -25,5 +25,25 @@ module.exports = {
             LichCaNhan: LichCaNhan,
             logout:true
         });
-    }
+    },
+    rederAddPersonalSchedule: async function renderAddPersonalSchedule(req, res, next) {
+        if(!req.session.user)
+            res.redirect('/');
+
+        
+        
+        const LichCaNhan = await doctorModel.selectPersonalSchedule(req, res, next);
+        if(req.session.resolve == false)
+            doctorModel.insertPersonalSchedule(req, res, next);
+        else
+            doctorModel.insertPersonalSchedule_resolve(req, res, next);
+
+        res.render("doctor/addPersonalSchedule", {
+            title: "Add Personal Schedule",
+            LichCaNhan: LichCaNhan,
+            logout:true
+        });
+    },
+
+    
 }
