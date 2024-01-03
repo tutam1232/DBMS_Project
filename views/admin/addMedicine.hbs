@@ -1,0 +1,72 @@
+<div>
+    <div>
+        <div>
+            <h1>Thêm thông tin thuốc</h1>
+        </div>
+        <div>
+            <form id="myForm" method="post" action="/admin/addMedicine">
+                <div class="mb-3">
+                    <label for="mathuoc" class="col-form-label">Mã thuốc:</label>
+                    <input type="text" name="mathuoc" class="form-control" id="mathuoc">
+                </div>
+                <div class="mb-3">
+                    <label for="tenthuoc" class="col-form-label">Tên thuốc:</label>
+                    <input type="text" name="tenthuoc" class="form-control" id="tenthuoc">
+                </div>
+                <div class="mb-3">
+                    <label for="donvitinh" class="col-form-label">Đơn vị tính:</label>
+                    <input type="text" name="donvitinh" class="form-control" id="donvitinh">
+                </div>
+                <div class="mb-3">
+                    <label for="chidinh" class="col-form-label">Chỉ định:</label>
+                    <input type="text" name="chidinh" class="form-control" id="chidinh">
+                </div>
+                <div class="mb-3">
+                    <label for="soluongton" class="col-form-label">Số lượng tồn:</label>
+                    <input type="number" name="soluongton" class="form-control" id="soluongton">
+                </div>
+                <div class="mb-3">
+                    <label for="ngayhethan" class="col-form-label">Ngày hết hạn:</label>
+                    <input type="date" name="ngayhethan" class="form-control" id="ngayhethan">
+                </div>
+                
+            </form>
+        </div>
+        <div>
+            <button id="myButton"  type="submit" class="btn btn-primary">Thêm thông tin thuốc</button>
+        </div>
+    </div>
+</div>
+{{!-- <h2>Lịch cá nhân</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Nha sĩ khám</th>
+      <th>Ngày khám</th>
+      <th>Thứ tự ca</th>
+      <th>Trạng thái</th>
+      <th>Hành động</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each LichCaNhan}}
+    <tr>
+    <td><input type="text" value="{{this.MaNhaSi}}"></td>
+    <td><input type="text" value="{{this.Ngay}}"></td>
+    <td><input type="text" value="{{this.ThuTuCa}}"></td>
+    <td><input type="text" value="{{this.TrangThai}}"></td>
+    <td>
+        <button type="button" class="btn btn-primary">Sửa</button>
+        <button type="button" class="btn btn-danger">Xóa</button>
+    </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table> --}}
+
+
+<script>
+  $('#myButton').click(function() {
+    $('#myForm').submit();
+  });
+</script>
