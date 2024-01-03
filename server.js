@@ -15,6 +15,7 @@ const conflictRouter = require('./routers/conflict.r');
 const resolveConflictRouter = require('./routers/resolveConflict.r');
 const staffRouter = require('./routers/staff.r');
 const doctorRouter = require('./routers/doctor.r');
+const adminRouter = require('./routers/admin.r');
 
 //SETTING UP SERVER
 app.engine('.hbs', engine({ extname: '.hbs' }));
@@ -46,7 +47,7 @@ app.use("/login_resolve_lockConflict", resolveConflictRouter);
 
 app.use("/staff", staffRouter);
 app.use("/doctor", doctorRouter);
-
+app.use("/admin", adminRouter);
 
 // ERROR HANDLING
 app.use((err, req, res, next) => {
