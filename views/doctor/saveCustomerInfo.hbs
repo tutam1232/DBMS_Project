@@ -1,0 +1,81 @@
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+    data-bs-whatever="@mdo">Thêm lịch hẹn</button>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm lịch hẹn</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="myForm" method="post" action="/staff/addAppointment">
+                    <div class="mb-3">
+                        <label for="maphieu" class="col-form-label">Mã phiếu:</label>
+                        <input type="text" name="maphieu" class="form-control" id="maphieu">
+                    </div>
+                    <div class="mb-3">
+                        <label for="manhashi" class="col-form-label">Mã nha sĩ khám:</label>
+                        <input type="text" name="manhashi" class="form-control" id="manhashi">
+                    </div>
+                    <div class="mb-3">
+                        <label for="ngaykham" class="col-form-label">Ngày khám:</label>
+                        <input type="date" name="ngaykham" class="form-control" id="ngaykham">
+                    </div>
+                    <div class="mb-3">
+                        <label for="thutuca" class="col-form-label">Thứ tự ca:</label>
+                        <input type="text" name="thutuca" class="form-control" id="thutuca">
+                    </div>
+                    <div class="mb-3">
+                        <label for="sdtkhachhang" class="col-form-label">SDT khách hàng:</label>
+                        <input type="text" name="sdtkhachhang" class="form-control" id="sdtkhachhang">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                <button id="myButton" type="button" class="btn btn-primary">Thêm lịch hẹn</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Sdt khách hàng</th>
+            <th>Mã bệnh án</th>
+            <th>Mã phiếu hẹn</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each benhan}}
+        <tr>
+            <td><input type="text" value="{{this.SdtKhachHang}}"></td>
+            <td><input type="text" value="{{this.MaBenhAn}}"></td>
+            <td><input type="text" value="{{this.MaPhieuHen}}"></td>
+            <td>
+                <button type="button" class="btn btn-primary">Sửa</button>
+                <button type="button" class="btn btn-danger">Xóa</button>
+                <button type="button" class="btn btn-info btn-ctdt"><a href="">Chi tiết đơn thuốc</a></button>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<script>
+    $('#myButton').click(function () {
+        $('#myForm').submit();
+    });
+
+    //Set href cho chi tiết đơn thuốc
+    const btnCtdt = document.getElementsByClassName('btn-ctdt');
+    for (let item of btnCtdt) {
+        let sdt = item.closest('tr').cells[0].children[0].value;
+        let maba = (item.closest('tr').cells[1].children[0].value);
+        let anchor = item.children[0];
+        const url = '/doctor/saveCustomerInfo/drugDetail?maba=' + maba+'&sdt='+sdt;
+        anchor.href = url; 
+    }
+</script>
