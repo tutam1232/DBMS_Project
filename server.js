@@ -47,7 +47,6 @@ app.use("/login_resolve_lockConflict", resolveConflictRouter);
 app.use("/staff", staffRouter);
 app.use("/doctor", doctorRouter);
 
-
 // ERROR HANDLING
 app.use((err, req, res, next) => {
     let statusCode = 500;

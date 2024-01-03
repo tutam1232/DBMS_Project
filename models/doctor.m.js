@@ -6,7 +6,7 @@ module.exports = {
             res.redirect('/');
 
         let MaNhaSi = req.session.user;
-        console.log(req.query,req.body)
+        console.log(req.query, req.body)
         const pool = new db.db.ConnectionPool(req.session.config);
         const connection = await pool.connect();
         const Request = new db.db.Request(connection);
@@ -90,14 +90,14 @@ module.exports = {
         Request.input('Ngay', db.db.Date, Ngay);
         Request.input('Ca', db.db.Int, Ca);
         console.log(Request.input)
-        
+
         //use request to query select*from phieuhen 
         const result1 = await Request.execute('sp_Insert_LichCaNhan', (err, result) => {
             if (err) {
                 console.log(err);
-                
-            }          
-            
+
+            }
+
         });
         //get result from query
         console.log(result1);
@@ -123,11 +123,57 @@ module.exports = {
         const result1 = await Request.execute('sp_Insert_LichCaNhan_fix', (err, result) => {
             if (err) {
                 console.log(err);
-                
-            }          
-            
+
+            }
+
         });
         //get result from query
         //console.log(result1);
-    }
+    },
+    selectBenhAn: async function (req, res, next) {
+        if (!req.session.config)
+            res.redirect('/');
+        const pool = new db.db.ConnectionPool(req.session.config);
+        const connection = await pool.connect();
+        const Request = new db.db.Request(connection);
+        const rs = await Request.query('select * from BENHAN');
+        return rs.recordset;
+    },
+    selectChiTietDonThuoc: async function (req, res, next) {
+        if (!req.session.config)
+            res.redirect('/');
+        const maba = req.query.maba;
+        const sdt = req.query.sdt;
+        const pool = new db.db.ConnectionPool(req.session.config);
+        const connection = await pool.connect();
+        const Request = new db.db.Request(connection);
+        Request.input('MaBenhAn', db.db.VarChar, maba);
+        Request.input('Sdt', db.db.VarChar, sdt);
+        const rs = await Request.query('select * from CHITIETDONTHUOC where MaBenhAn = @MaBenhAn and SdtKhachHang = @Sdt');
+        return rs.recordset;
+    },
+    insertChiTietDonThuoc: async function (req, res, next) {
+        if (!req.session.config)
+            res.redirect('/');
+
+        let mathuoc = req.body.mathuoc;
+        let sdt = req.body.sdt;
+        let maba = req.body.maba;
+        let sl = req.body.sl;
+        let sp = req.body.sp;
+        const pool = new db.db.ConnectionPool(req.session.config);
+        const connection = await pool.connect();
+        const Request = new db.db.Request(connection);
+
+        Request.input('mathuoc', db.db.VarChar, mathuoc);
+        Request.input('sdt', db.db.VarChar, sdt);
+        Request.input('maba', db.db.VarChar, maba);
+        Request.input('sl', db.db.Int, sl);
+        //use request to query select*from phieuhen 
+        const result1 = await Request.execute(sp, (err, result) => {
+            if (err) {
+                console.log(err);
+            }
+        });
+    },
 }

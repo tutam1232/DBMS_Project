@@ -1,0 +1,77 @@
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+    data-bs-whatever="@mdo">Thêm chi tiết đơn thuốc</button>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm chi tiết đơn thuốc</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="myForm" method="post" action="/doctor/saveCustomerInfo/drugDetail">
+                    <div class="mb-3">
+                        <label for="maphieu" class="col-form-label">Mã thuốc:</label>
+                        <input type="text" name="mathuoc" class="form-control" id="maphieu">
+                    </div>
+                    <div class="mb-3">
+                        <label for="manhashi" class="col-form-label">Sdt khách hàng:</label>
+                        <input type="text" name="sdt" class="form-control" id="manhashi">
+                    </div>
+                    <div class="mb-3">
+                        <label for="ngaykham" class="col-form-label">Mã bệnh án:</label>
+                        <input type="text" name="maba" class="form-control" id="ngaykham">
+                    </div>
+                    <div class="mb-3">
+                        <label for="thutuca" class="col-form-label">Số lượng:</label>
+                        <input type="number" name="sl" class="form-control" id="thutuca">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                <button id="myButton" type="button" class="btn btn-primary">Thêm chi tiết đơn thuốc</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Mã thuốc</th>
+            <th>Sdt khách hàng</th>
+            <th>Mã bệnh án</th>
+            <th>Số lượng</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each donthuoc}}
+        <tr>
+            <td><input type="text" value="{{this.MaThuoc}}"></td>
+            <td><input type="text" value="{{this.SdtKhachHang}}"></td>
+            <td><input type="text" value="{{this.MaBenhAn}}"></td>
+            <td><input type="text" value="{{this.SoLuong}}"></td>
+            <td>
+                <button type="button" class="btn btn-primary">Sửa</button>
+                <button type="button" class="btn btn-danger">Xóa</button>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<script>
+    $('#myButton').click(function () {
+        $('#myForm').submit();
+    });
+
+    //Set href cho chi tiết đơn thuốc
+    const btnCtdt = document.getElementsByClassName('btn-ctdt');
+    for (let item of btnCtdt) {
+        let maba = (item.closest('tr').cells[1].children[0].value);
+        let anchor = item.children[0];
+        const url = '/doctor/saveCustomerInfo/' + maba;
+        anchor.href = url; 
+    }
+</script>
