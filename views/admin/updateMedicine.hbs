@@ -1,0 +1,66 @@
+<div>
+    <div>
+        <div>
+            <h1>Sửa thông tin thuốc</h1>
+        </div>
+        <div>
+            <form id="myForm" method="post" action="/admin/updateMedicine">
+                <div class="mb-3">
+                    <label for="MaThuoc" class="col-form-label">Mã thuốc:</label>
+                    <input type="text" name="MaThuoc" class="form-control" id="MaThuoc">
+                </div>
+                <div class="mb-3">
+                    <label for="TenThuoc" class="col-form-label">Tên thuốc:</label>
+                    <input type="text" name="TenThuoc" class="form-control" id="TenThuoc">
+                </div>
+                <div class="mb-3">
+                    <label for="DonViTinh" class="col-form-label">Đơn vị tính:</label>
+                    <input type="text" name="DonViTinh" class="form-control" id="DonViTinh">
+                </div>
+                <div class="mb-3">
+                    <label for="ChiDinh" class="col-form-label">Chỉ định:</label>
+                    <input type="text" name="ChiDinh" class="form-control" id="ChiDinh">
+                </div>
+                <div class="mb-3">
+                    <label for="SoLuongTon" class="col-form-label">Số lượng tồn:</label>
+                    <input type="number" name="SoLuongTon" class="form-control" id="SoLuongTon">
+                </div>
+                <div class="mb-3">
+                    <label for="NgayHetHan" class="col-form-label">Ngày hết hạn:</label>
+                    <input type="date" name="NgayHetHan" class="form-control" id="NgayHetHan">
+                </div>
+
+            </form>
+        </div>
+        <div>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                data-bs-whatever="@mdo">Sửa thông tin thuốc</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Xác nhận sửa</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    Bạn có chắc chắn về sự thay đổi này?
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                <button id="confirm" type="submit" class="btn btn-primary">Xác nhận</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#confirm').click(function () {
+        $('#myForm').submit();
+    });
+</script>
