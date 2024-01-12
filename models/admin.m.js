@@ -167,5 +167,50 @@ module.exports = {
         });
 
         console.log(result1);
+    },
+
+
+
+    UpdateMedicine_volume: async function (req, res, next){
+        if (!req.session.config)
+            res.redirect('/');
+
+        let { MaThuoc, SoLuongTon } = req.body;
+
+        const pool = new db.db.ConnectionPool(req.session.config);
+        const connection = await pool.connect();
+        const Request = new db.db.Request(connection);
+
+        Request.input("MaThuoc", db.db.VarChar, MaThuoc);
+        Request.input("soluongcapnhat", db.db.Int, SoLuongTon);
+
+        console.log(MaThuoc, SoLuongTon);
+
+        const result1 = await Request.execute("Update_SoLuongThuoc", (err, result) => {
+            if (err) {
+                console.log(err);
+            }
+        });
+    },
+    UpdateMedicine_volume_resolve: async function (req, res, next){
+        if (!req.session.config)
+            res.redirect('/');
+
+        let { MaThuoc, SoLuongTon } = req.query;
+
+        const pool = new db.db.ConnectionPool(req.session.config);
+        const connection = await pool.connect();
+        const Request = new db.db.Request(connection);
+
+        Request.input("MaThuoc", db.db.VarChar, MaThuoc);
+        Request.input("soluongcapnhat", db.db.Int, SoLuongTon);
+
+        console.log(MaThuoc, SoLuongTon);
+
+        const result1 = await Request.execute("Update_SoLuongThuoc_Fix", (err, result) => {
+            if (err) {
+                console.log(err);
+            }
+        });
     }
 }

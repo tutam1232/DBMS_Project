@@ -35,6 +35,7 @@
 </table>
 
 <button id="updMed" type="button" class="btn btn-primary">Sửa thông tin thuốc</button>
+<button id="updMed_vol" type="button" class="btn btn-primary">Cập nhật số lượng tồn thuốc thông tin thuốc (Cộng thêm)</button>
 
 <br>
 <br>
@@ -110,5 +111,9 @@
 	//Set href cho chi tiết đơn thuốc
 	document.getElementById("updMed").onclick = function () {
 		location.href = "/admin/updateMedicine";
+	};
+
+	document.getElementById("updMed_vol").onclick = function () {
+		location.href = "/admin/UpdateMedicine_volume";
 	};
 </script>

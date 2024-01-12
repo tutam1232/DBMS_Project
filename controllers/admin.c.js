@@ -55,5 +55,20 @@ module.exports = {
             title: "Update Medicine",
             logout: true
         })
-    }
+    },
+    
+    renderUpdateMedicine_volume: async function renderUpdateMedicine_volume(req, res, next) {
+        if (!req.session.user)
+            res.redirect('/');
+
+        if (req.session.resolve == false)
+            adminModel.UpdateMedicine_volume(req, res, next);
+        else
+            adminModel.UpdateMedicine_volume_resolve(req, res, next);
+
+        res.render("admin/UpdateMedicine_volume", {
+            title: "Update Medicine volume",
+            logout: true
+        })
+    },
 }
