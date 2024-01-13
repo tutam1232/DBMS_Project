@@ -196,7 +196,7 @@ module.exports = {
         if (!req.session.config)
             res.redirect('/');
 
-        let { MaThuoc, SoLuongTon } = req.query;
+        let { MaThuoc, SoLuongTon } = req.body;
 
         const pool = new db.db.ConnectionPool(req.session.config);
         const connection = await pool.connect();
@@ -207,7 +207,7 @@ module.exports = {
 
         console.log(MaThuoc, SoLuongTon);
 
-        const result1 = await Request.execute("Update_SoLuongThuoc_Fix", (err, result) => {
+        const result1 = await Request.execute("Update_SoLuongThuoc_fix", (err, result) => {
             if (err) {
                 console.log(err);
             }
